@@ -16,3 +16,4 @@ export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 /usr/bin/python3 -m venv ${HOME}/.venv &
 export PATH="${HOME}/.venv/bin:${PATH}"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
