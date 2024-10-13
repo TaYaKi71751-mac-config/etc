@@ -1,0 +1,12 @@
+#!/bin/bash
+
+case "$script_type" in
+  --up)
+    # Set DNS servers
+    sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4
+    ;;
+  --down)
+    # Clear DNS servers
+    sudo networksetup -setdnsservers Wi-Fi "Empty"
+    ;;
+esac
