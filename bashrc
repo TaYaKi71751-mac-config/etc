@@ -14,12 +14,16 @@ export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export PATH="$PATH:$HOME/Library/Android/sdk/tools"
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
+if ( ls /usr/libexec/java_home > /dev/null );then
+	export JAVA_HOME="$(/usr/libexec/java_home)"
+fi
 /usr/bin/python3 -m venv ${HOME}/.venv &
 export PATH="${HOME}/.venv/bin:${PATH}"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 source "${HOME}/emsdk/emsdk_env.sh"
 export PATH="${PATH}:${HOME}/emsdk"
 export PATH="${PATH}:${HOME}/emsdk/upstream/emscripten"
+. "$HOME/.cargo/env"
 export RUSTUP_HOME="${HOME}/.rustup"
 export CARGO_HOME="${HOME}/.cargo"
 export PATH="${PATH}:${HOME}/.cargo/bin"
