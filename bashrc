@@ -15,7 +15,11 @@ export PATH="$PATH:$HOME/Library/Android/sdk/tools"
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 if ( ls /usr/libexec/java_home > /dev/null );then
-	export JAVA_HOME="$(/usr/libexec/java_home)"
+	if ( /usr/libexec/java_home );then
+		export JAVA_HOME="$(/usr/libexec/java_home)"
+	else
+		export JAVA_HOME=/usr/local/opt/openjdk@8
+	fi
 fi
 /usr/bin/python3 -m venv ${HOME}/.venv &
 export PATH="${HOME}/.venv/bin:${PATH}"
