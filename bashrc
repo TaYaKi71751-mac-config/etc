@@ -25,6 +25,7 @@ fi
 /usr/bin/python3 -m venv ${HOME}/.venv &
 export PATH="${HOME}/.venv/bin:${PATH}"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+eval "$(rbenv init - bash)"
 source "${HOME}/emsdk/emsdk_env.sh"
 export PATH="${PATH}:${HOME}/emsdk"
 export PATH="${PATH}:${HOME}/emsdk/upstream/emscripten"
