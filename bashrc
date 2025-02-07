@@ -9,6 +9,7 @@ shopt -s checkwinsize
 
 [ -r "/etc/bashrc_$TERM_PROGRAM" ] && . "/etc/bashrc_$TERM_PROGRAM"
 
+export PATH="${PATH}:/opt/homebrew/bin"
 export PATH="${PATH}:/usr/local/opt/openvpn/sbin"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export PATH="$PATH:$HOME/Library/Android/sdk/tools"
@@ -23,7 +24,7 @@ if ( ls /usr/libexec/java_home > /dev/null );then
 fi
 /usr/bin/python3 -m venv ${HOME}/.venv &
 export PATH="${HOME}/.venv/bin:${PATH}"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 source "${HOME}/emsdk/emsdk_env.sh"
 export PATH="${PATH}:${HOME}/emsdk"
 export PATH="${PATH}:${HOME}/emsdk/upstream/emscripten"
