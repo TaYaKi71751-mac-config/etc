@@ -9,6 +9,8 @@ shopt -s checkwinsize
 
 [ -r "/etc/bashrc_$TERM_PROGRAM" ] && . "/etc/bashrc_$TERM_PROGRAM"
 
+export LD_LIBRARY_PATH=$HOME/bin/oracle:$LD_LIBRARY_PATH
+export PATH=$LD_LIBRARY_PATH:$PATH
 export PATH="${PATH}:/opt/homebrew/bin"
 export PATH="${PATH}:/usr/local/opt/openvpn/sbin"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
@@ -19,9 +21,10 @@ if ( ls /usr/libexec/java_home > /dev/null );then
 	if ( /usr/libexec/java_home );then
 		export JAVA_HOME="$(/usr/libexec/java_home)"
 	else
-		export JAVA_HOME=/usr/local/opt/openjdk@8
+		export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 	fi
 fi
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
 /usr/bin/python3 -m venv ${HOME}/.venv &
 export PATH="${HOME}/.venv/bin:${PATH}"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
