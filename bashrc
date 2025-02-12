@@ -9,6 +9,7 @@ shopt -s checkwinsize
 
 [ -r "/etc/bashrc_$TERM_PROGRAM" ] && . "/etc/bashrc_$TERM_PROGRAM"
 
+export PATH="/usr/local/bin:${PATH}"
 export LD_LIBRARY_PATH=$HOME/bin/oracle:$LD_LIBRARY_PATH
 export PATH=$LD_LIBRARY_PATH:$PATH
 export PATH="${PATH}:/opt/homebrew/bin"
