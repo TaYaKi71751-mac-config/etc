@@ -38,3 +38,9 @@ export PATH="${PATH}:${HOME}/emsdk/upstream/emscripten"
 export RUSTUP_HOME="${HOME}/.rustup"
 export CARGO_HOME="${HOME}/.cargo"
 export PATH="${PATH}:${HOME}/.cargo/bin"
+if ( which colima &> /dev/null );then
+	colima start --arch x86_64 &> /dev/null &
+fi
+if ( which docker &> /dev/null );then
+	docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-xe &> /dev/null
+fi
