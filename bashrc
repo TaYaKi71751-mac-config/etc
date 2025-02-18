@@ -20,12 +20,11 @@ export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export PATH="$PATH:$HOME/Library/Android/sdk/tools"
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-if ( ls /usr/libexec/java_home > /dev/null );then
-	if ( /usr/libexec/java_home );then
-		export JAVA_HOME="$(/usr/libexec/java_home)"
-	else
-		export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
-	fi
+if ( /usr/libexec/java_home &> /dev/null );then
+	export JAVA_HOME="$(/usr/libexec/java_home)"
+else
+	export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+	export PATH="${JAVA_HOME}/bin:$PATH"
 fi
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
 /usr/bin/python3 -m venv ${HOME}/.venv &
