@@ -9,6 +9,8 @@ shopt -s checkwinsize
 
 [ -r "/etc/bashrc_$TERM_PROGRAM" ] && . "/etc/bashrc_$TERM_PROGRAM"
 
+export EMSDK_QUIET=1
+export NLS_LANG=KOREAN_KOREA.AL32UTF8 
 export PATH="/usr/local/bin:${PATH}"
 export LD_LIBRARY_PATH=$HOME/bin/oracle:$LD_LIBRARY_PATH
 export PATH=$LD_LIBRARY_PATH:$PATH
