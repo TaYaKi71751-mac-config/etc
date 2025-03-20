@@ -27,6 +27,7 @@ else
 	export PATH="${JAVA_HOME}/bin:$PATH"
 fi
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+export PATH="${PATH}:$HOME/sqlplus"
 /usr/bin/python3 -m venv ${HOME}/.venv &
 export PATH="${HOME}/.venv/bin:${PATH}"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
