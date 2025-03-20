@@ -23,10 +23,10 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 if ( /usr/libexec/java_home &> /dev/null );then
 	export JAVA_HOME="$(/usr/libexec/java_home)"
 else
-	export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+	export JAVA_HOME="/opt/homebrew/opt/openjdk"
 	export PATH="${JAVA_HOME}/bin:$PATH"
 fi
-export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 /usr/bin/python3 -m venv ${HOME}/.venv &
 export PATH="${HOME}/.venv/bin:${PATH}"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
