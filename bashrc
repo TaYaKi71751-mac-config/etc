@@ -16,6 +16,7 @@ export LD_LIBRARY_PATH=$HOME/bin/oracle:$LD_LIBRARY_PATH
 export PATH=$LD_LIBRARY_PATH:$PATH
 export PATH="${PATH}:/opt/homebrew/bin"
 export PATH="${PATH}:/usr/local/opt/openvpn/sbin"
+export PATH="${PATH}:/opt/homebrew/opt/openvpn/sbin/"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export PATH="$PATH:$HOME/Library/Android/sdk/tools"
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
