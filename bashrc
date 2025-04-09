@@ -44,7 +44,6 @@ if ( which pyenv &> /dev/null );then
 N
 EOF
 	 pyenv global "$latest"
-		rm -rf $HOME/.venv
 		${HOME}/.pyenv/versions/$(cat $HOME/.pyenv/version)/bin/python3 -m venv $HOME/.venv
 	fi
 	${HOME}/.pyenv/versions/$(cat $HOME/.pyenv/version)/bin/python3 -m venv $HOME/.venv
