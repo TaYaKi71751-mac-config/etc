@@ -36,12 +36,18 @@ if ( ls /opt/homebrew/opt/tcl-tk &> /dev/null);then
 fi
 if ( which pyenv &> /dev/null );then
 	latest=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
-	pyenv install "$latest" << EOF
+	global="$(cat $HOME/.pyenv/version)"
+	if ( echo "${global}" | grep "$latest" );then
+		echo "Using Python ${global}"
+	else
+	 pyenv install "$latest" << EOF
 N
 EOF
-	pyenv global "$latest"
-	export PATH="${HOME}/.pyenv/versions/$(cat $HOME/.pyenv/version)/bin:${PATH}"
-	python3 -m venv $HOME/.venv
+	 pyenv global "$latest"
+		rm -rf $HOME/.venv
+		${HOME}/.pyenv/versions/$(cat $HOME/.pyenv/version)/bin/python3 -m venv $HOME/.venv
+	fi
+	${HOME}/.pyenv/versions/$(cat $HOME/.pyenv/version)/bin/python3 -m venv $HOME/.venv
 else
 	find /Library/Frameworks/Python.framework/Versions -name 'python3' -exec {} -m venv ${HOME}/.venv \;
 fi
