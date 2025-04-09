@@ -29,13 +29,22 @@ else
 fi
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export PATH="${PATH}:$HOME/sqlplus"
-find /Library/Frameworks/Python.framework/Versions -name 'python3' -exec {} -m venv ${HOME}/.venv \;
-export PATH="${HOME}/.venv/bin:${PATH}"
 if ( ls /opt/homebrew/opt/tcl-tk &> /dev/null);then
 	export PATH="/opt/homebrew/opt/tcl-tk/bin:$PATH"
 	export LDFLAGS="-L/opt/homebrew/opt/tcl-tk/lib"
 	export CPPFLAGS="-I/opt/homebrew/opt/tcl-tk/include"
 fi
+if ( which pyenv &> /dev/null );then
+	export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/opt/homebrew/opt/tcl-tk/include' --with-tcltk-libs='-L/opt/homebrew/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"
+	latest=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
+	pyenv install "$latest"
+	pyenv global "$latest"
+	export PATH="${HOME}/.pyenv/versions/$(cat $HOME/.pyenv/version)/bin:${PATH}"
+	python3 -m venv $HOME/.venv
+else
+	find /Library/Frameworks/Python.framework/Versions -name 'python3' -exec {} -m venv ${HOME}/.venv \;
+fi
+export PATH="${HOME}/.venv/bin:${PATH}"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 eval "$(rbenv init - bash)"
 source "${HOME}/emsdk/emsdk_env.sh"
