@@ -33,7 +33,7 @@ if ( ls /opt/homebrew/bin/python3 &> /dev/null );then
 	/opt/homebrew/bin/python3 -m venv ${HOME}/.venv &
 fi
 export PATH="${HOME}/.venv/bin:${PATH}"
-if ( ls /opt/homebrew/tcl-tk &> /dev/null);then
+if ( ls /opt/homebrew/opt/tcl-tk &> /dev/null);then
 	export PATH="/opt/homebrew/opt/tcl-tk/bin:$PATH"
 	export LDFLAGS="-L/opt/homebrew/opt/tcl-tk/lib"
 	export CPPFLAGS="-I/opt/homebrew/opt/tcl-tk/include"
