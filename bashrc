@@ -35,7 +35,6 @@ if ( ls /opt/homebrew/opt/tcl-tk &> /dev/null);then
 	export CPPFLAGS="-I/opt/homebrew/opt/tcl-tk/include"
 fi
 if ( which pyenv &> /dev/null );then
-	export PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/opt/homebrew/opt/tcl-tk/include' --with-tcltk-libs='-L/opt/homebrew/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"
 	latest=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
 	pyenv install "$latest"
 	pyenv global "$latest"
