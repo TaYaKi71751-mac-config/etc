@@ -71,3 +71,13 @@ if ( which docker &> /dev/null );then
 	docker rm -f mysql-container &> /dev/null &
 	docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=1234 -v mysql-volume:/var/lib/mysql -p 3306:3306 -d mysql:5.7 &> /dev/null &
 fi
+cd $HOME
+git clone https://github.com/TaYaKi71751-mac-config/etc
+cd etc
+if ( git pull | grep "Already up to date." );then
+	printf ""
+else
+	sudo cp -R * /etc/
+	source /etc/bashrc
+fi
+cd $HOME
