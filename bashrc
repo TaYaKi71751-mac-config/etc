@@ -29,9 +29,7 @@ else
 fi
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export PATH="${PATH}:$HOME/sqlplus"
-if ( ls /opt/homebrew/bin/python3 &> /dev/null );then
-	/opt/homebrew/bin/python3 -m venv ${HOME}/.venv &
-fi
+find /Library/Frameworks/Python.framework/Versions -name 'python3' -exec {} -m venv ${HOME}/.venv \;
 export PATH="${HOME}/.venv/bin:${PATH}"
 if ( ls /opt/homebrew/opt/tcl-tk &> /dev/null);then
 	export PATH="/opt/homebrew/opt/tcl-tk/bin:$PATH"
