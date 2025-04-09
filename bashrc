@@ -29,7 +29,9 @@ else
 fi
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export PATH="${PATH}:$HOME/sqlplus"
-/usr/bin/python3 -m venv ${HOME}/.venv &
+if ( ls /opt/homebrew/bin/python3 &> /dev/null );then
+	/opt/homebrew/bin/python3 -m venv ${HOME}/.venv &
+fi
 export PATH="${HOME}/.venv/bin:${PATH}"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 eval "$(rbenv init - bash)"
