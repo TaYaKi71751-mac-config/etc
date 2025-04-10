@@ -72,33 +72,35 @@ if ( which docker &> /dev/null );then
 fi
 cd $HOME
 git clone https://github.com/TaYaKi71751-mac-config/etc &> /dev/null
-cd etc
-if ( git pull | grep "Already up to date." );then
-	FILE_LIST="$(find $PWD -type f)"
-	while IFS= read -r FILE_PATH
-	do
-		ETC_FILE_PATH="$(echo "$FILE_PATH" | sed "s,${HOME},,g")"
-		diff "${FILE_PATH}" "${ETC_FILE_PATH}"
-		exit_code=$?
-		if [ $exit_code -eq 1 ];then
-			echo Updating /etc/
-			sudo cp -R .nvimlog /etc/
-			sudo cp -R .git /etc/
-			sudo cp -R .gitignore /etc/
-			sudo cp -R * /etc/
-			source /etc/bashrc
-		elif [ $exit_code -eq 2 ];then
-			echo Updating /etc/
-			sudo cp -R .nvimlog /etc/
-			sudo cp -R .git /etc/
-			sudo cp -R .gitignore /etc/
-			sudo cp -R * /etc/
-			source /etc/bashrc
-		fi
-	# https://unix.stackexchange.com/questions/9784/how-can-i-read-line-by-line-from-a-variable-in-bash
-	done < <(printf '%s\n' "${FILE_LIST}")
-else
-	sudo cp -R * /etc/
-	source /etc/bashrc
+if ( ls $HOME/etc &> /dev/null );then
+	cd $HOME/etc
+	if ( git pull | grep "Already up to date." );then
+		FILE_LIST="$(find $PWD -type f)"
+		while IFS= read -r FILE_PATH
+		do
+			ETC_FILE_PATH="$(echo "$FILE_PATH" | sed "s,${HOME},,g")"
+			diff "${FILE_PATH}" "${ETC_FILE_PATH}"
+			exit_code=$?
+			if [ $exit_code -eq 1 ];then
+				echo Updating /etc/
+				sudo cp -R .nvimlog /etc/
+				sudo cp -R .git /etc/
+				sudo cp -R .gitignore /etc/
+				sudo cp -R * /etc/
+				source /etc/bashrc
+			elif [ $exit_code -eq 2 ];then
+				echo Updating /etc/
+				sudo cp -R .nvimlog /etc/
+				sudo cp -R .git /etc/
+				sudo cp -R .gitignore /etc/
+				sudo cp -R * /etc/
+				source /etc/bashrc
+			fi
+			# https://unix.stackexchange.com/questions/9784/how-can-i-read-line-by-line-from-a-variable-in-bash
+		done < <(printf '%s\n' "${FILE_LIST}")
+	else
+		sudo cp -R * /etc/
+		source /etc/bashrc
+	fi
 fi
 cd $HOME
