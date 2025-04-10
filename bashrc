@@ -82,12 +82,14 @@ if ( git pull | grep "Already up to date." );then
 		exit_code=$?
 		if [ $exit_code -eq 1 ];then
 			echo Updating /etc/
+			sudo cp -R .nvimlog /etc/
 			sudo cp -R .git /etc/
 			sudo cp -R .gitignore /etc/
 			sudo cp -R * /etc/
 			source /etc/bashrc
 		elif [ $exit_code -eq 2 ];then
 			echo Updating /etc/
+			sudo cp -R .nvimlog /etc/
 			sudo cp -R .git /etc/
 			sudo cp -R .gitignore /etc/
 			sudo cp -R * /etc/
