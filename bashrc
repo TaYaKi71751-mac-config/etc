@@ -71,10 +71,30 @@ if ( which docker &> /dev/null );then
 	docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=1234 -v mysql-volume:/var/lib/mysql -p 3306:3306 -d mysql:5.7 &> /dev/null &
 fi
 cd $HOME
-git clone https://github.com/TaYaKi71751-mac-config/etc
+git clone https://github.com/TaYaKi71751-mac-config/etc &> /dev/null
 cd etc
 if ( git pull | grep "Already up to date." );then
-	printf ""
+	FILE_LIST="$(find $PWD -type f)"
+	while IFS= read -r FILE_PATH
+	do
+		ETC_FILE_PATH="$(echo "$FILE_PATH" | sed "s,${HOME},,g")"
+		diff "${FILE_PATH}" "${ETC_FILE_PATH}"
+		exit_code=$?
+		if [ $exit_code -eq 1 ];then
+			echo Updating /etc/
+			sudo cp -R .git /etc/
+			sudo cp -R .gitignore /etc/
+			sudo cp -R * /etc/
+			source /etc/bashrc
+		elif [ $exit_code -eq 2 ];then
+			echo Updating /etc/
+			sudo cp -R .git /etc/
+			sudo cp -R .gitignore /etc/
+			sudo cp -R * /etc/
+			source /etc/bashrc
+		fi
+	# https://unix.stackexchange.com/questions/9784/how-can-i-read-line-by-line-from-a-variable-in-bash
+	done < <(printf '%s\n' "${FILE_LIST}")
 else
 	sudo cp -R * /etc/
 	source /etc/bashrc
