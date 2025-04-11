@@ -29,31 +29,33 @@ else
 fi
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export PATH="${PATH}:$HOME/sqlplus"
-if ( ls /opt/homebrew/opt/tcl-tk &> /dev/null);then
+if ( ls /opt/homebrew/opt/tcl-tk &> /dev/null );then
 	export PATH="/opt/homebrew/opt/tcl-tk/bin:$PATH"
 	export LDFLAGS="-L/opt/homebrew/opt/tcl-tk/lib"
 	export CPPFLAGS="-I/opt/homebrew/opt/tcl-tk/include"
 fi
-if ( which pyenv &> /dev/null );then
-	latest=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
-	global="$(cat $HOME/.pyenv/version)"
-	if ( echo "${global}" | grep "$latest" );then
-		echo "Using Python ${global}"
-	else
-	 pyenv install "$latest" << EOF
+if ( ls $HOME/.config/pyenv.auto_update &> /dev/null );then
+	if ( which pyenv &> /dev/null );then
+		latest=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
+		global="$(cat $HOME/.pyenv/version)"
+		if ( echo "${global}" | grep "$latest" );then
+			echo "Using Python ${global}"
+		else
+		 pyenv install "$latest" << EOF
 N
 EOF
-	 pyenv global "$latest"
+   pyenv global "$latest"
+		 ${HOME}/.pyenv/versions/$(cat $HOME/.pyenv/version)/bin/python3 -m venv $HOME/.venv
+		fi
 		${HOME}/.pyenv/versions/$(cat $HOME/.pyenv/version)/bin/python3 -m venv $HOME/.venv
+	else
+		find /Library/Frameworks/Python.framework/Versions -name 'python3' -exec {} -m venv ${HOME}/.venv \;
 	fi
-	${HOME}/.pyenv/versions/$(cat $HOME/.pyenv/version)/bin/python3 -m venv $HOME/.venv
-else
-	find /Library/Frameworks/Python.framework/Versions -name 'python3' -exec {} -m venv ${HOME}/.venv \;
 fi
-export PATH="${HOME}/.venv/bin:${PATH}"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-eval "$(rbenv init - bash)"
-source "${HOME}/emsdk/emsdk_env.sh"
+	export PATH="${HOME}/.venv/bin:${PATH}"
+	export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+	eval "$(rbenv init - bash)"
+	source "${HOME}/emsdk/emsdk_env.sh"
 export PATH="${PATH}:${HOME}/emsdk"
 export PATH="${PATH}:${HOME}/emsdk/upstream/emscripten"
 . "$HOME/.cargo/env"
