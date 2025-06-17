@@ -27,6 +27,11 @@ else
 	export JAVA_HOME="/opt/homebrew/opt/openjdk"
 	export PATH="${JAVA_HOME}/bin:$PATH"
 fi
+TEMURIN_JAVA_PATH="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name 'temurin-*' | head -n 1)"
+if ( ls "${TEMURIN_JAVA_PATH}" &> /dev/null );then
+	export JAVA_HOME="${TEMURIN_JAVA_PATH}/Contents/Home"
+	export PATH="${JAVA_HOME}/bin:$PATH"
+fi
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export PATH="${PATH}:$HOME/sqlplus"
 if ( ls /opt/homebrew/opt/tcl-tk &> /dev/null );then
