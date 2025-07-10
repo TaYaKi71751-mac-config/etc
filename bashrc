@@ -59,6 +59,8 @@ EOF
 fi
 	export PATH="${HOME}/.venv/bin:${PATH}"
 	export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+	RUBY_GEMS_PATH="$(find /opt/homebrew/lib/ruby/gems/ -type d -maxdepth 1 -mindepth 1 | head -n 1)/bin"
+	export PATH="${RUBY_GEMS_PATH}:${PATH}"
 	eval "$(rbenv init - bash)"
 	source "${HOME}/emsdk/emsdk_env.sh"
 export PATH="${PATH}:${HOME}/emsdk"
