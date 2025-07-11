@@ -57,6 +57,7 @@ EOF
 		find /Library/Frameworks/Python.framework/Versions -name 'python3' -exec {} -m venv ${HOME}/.venv \;
 	fi
 fi
+export PATH="${HOME}/flutter/bin:$PATH"
 	export PATH="${HOME}/.venv/bin:${PATH}"
 	export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 	RUBY_GEMS_PATH="$(find /opt/homebrew/lib/ruby/gems/ -type d -maxdepth 1 -mindepth 1 | head -n 1)/bin"
