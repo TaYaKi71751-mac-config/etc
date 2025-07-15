@@ -20,6 +20,7 @@ export PATH="${PATH}:/opt/homebrew/opt/openvpn/sbin/"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export PATH="$PATH:$HOME/Library/Android/sdk/tools"
 export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
+export PATH="$PATH:$HOME/Library/Android/sdk/cmdline-tools/latest/bin"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 if ( /usr/libexec/java_home &> /dev/null );then
 	export JAVA_HOME="$(/usr/libexec/java_home)"
