@@ -28,6 +28,9 @@ else
 	export JAVA_HOME="/opt/homebrew/opt/openjdk"
 	export PATH="${JAVA_HOME}/bin:$PATH"
 fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 TEMURIN_JAVA_PATH="$(find /Library/Java/JavaVirtualMachines -type d -maxdepth 1 -name 'temurin-*' | head -n 1)"
 if ( ls "${TEMURIN_JAVA_PATH}" &> /dev/null );then
 	export JAVA_HOME="${TEMURIN_JAVA_PATH}/Contents/Home"
