@@ -72,7 +72,7 @@ PS1="%n@%m %1~ %# "
 
 # Useful support for interacting with Terminal.app or other terminal programs
 [ -r "/etc/zshrc_$TERM_PROGRAM" ] && . "/etc/zshrc_$TERM_PROGRAM"
-
+CURRENT_PWD="$(pwd)"
 export EMSDK_QUIET=1
 export NLS_LANG=KOREAN_KOREA.AL32UTF8 
 export PATH="/usr/local/bin:${PATH}"
@@ -183,4 +183,4 @@ if ( ls $HOME/.config/etc.auto_update &> /dev/null );then
 		fi
 	fi
 fi
-cd $HOME
+cd "$CURRENT_PWD"
