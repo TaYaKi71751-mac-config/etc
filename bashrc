@@ -76,14 +76,7 @@ export RUSTUP_HOME="${HOME}/.rustup"
 export CARGO_HOME="${HOME}/.cargo"
 export PATH="${PATH}:${HOME}/.cargo/bin"
 if ( which colima &> /dev/null );then
-	colima start --arch x86_64 --memory 4 &> /dev/null &
-fi
-if ( which docker &> /dev/null );then
-	docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/oradata gvenzl/oracle-xe &> /dev/null &
-fi
-if ( which docker &> /dev/null );then
-	docker rm -f mysql-container &> /dev/null &
-	docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=1234 -v mysql-volume:/var/lib/mysql -p 3306:3306 -d mysql:5.7 &> /dev/null &
+	colima start --memory 4 &> /dev/null &
 fi
 if ( ls $HOME/.config/etc.auto_update &> /dev/null );then
 	cd $HOME
