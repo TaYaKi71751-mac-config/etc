@@ -159,20 +159,20 @@ if ( ls $HOME/.config/etc.auto_update &> /dev/null );then
 					sudo cp -R .git /etc/
 					sudo cp -R .gitignore /etc/
 					sudo cp -R * /etc/
-					source /etc/bashrc
+					source /etc/zshrc
 				elif [ $exit_code -eq 2 ];then
 					echo Updating /etc/
 					sudo cp -R .nvimlog /etc/
 					sudo cp -R .git /etc/
 					sudo cp -R .gitignore /etc/
 					sudo cp -R * /etc/
-					source /etc/bashrc
+					source /etc/zshrc
 				fi
 				# https://unix.stackexchange.com/questions/9784/how-can-i-read-line-by-line-from-a-variable-in-bash
 			done < <(printf '%s\n' "${FILE_LIST}")
 		else
 			sudo cp -R * /etc/
-			source /etc/bashrc
+			source /etc/zshrc
 		fi
 	fi
 fi
